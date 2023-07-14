@@ -20,11 +20,17 @@ public class AuthorController : Controller
     }
 
     [HttpGet]
-
     public IActionResult Create()
     {
+        // Obtener la lista de autores desde la base de datos
+        var authors = _context.Author.ToList();
+
+        // Asignar la lista de autores a ViewBag.Authors
+        ViewBag.Authors = authors;
+
         return View();
     }
+
 
     [HttpPost]
     public IActionResult Create(Author author)
@@ -56,7 +62,6 @@ public class AuthorController : Controller
         return View(author);
     }
 
-
     private List<Author> GetAuthors()
     {
         return _context.Author.ToList();
@@ -71,7 +76,4 @@ public class AuthorController : Controller
         }
         return View(author.Books);
     }
-
-
-
 }

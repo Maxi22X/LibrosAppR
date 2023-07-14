@@ -11,6 +11,7 @@ public class BookController : Controller
         _context = context;
     }
 
+    [HttpGet]
     public IActionResult Create(int authorId)
     {
         var author = _context.Author.Find(authorId);
@@ -21,8 +22,13 @@ public class BookController : Controller
 
         ViewBag.AuthorName = author.Name;
         ViewBag.AuthorId = authorId;
+
+        // Obtener la lista de autores y asignarla a ViewBag.Authors
+        ViewBag.Authors = _context.Author.ToList();
+
         return View();
     }
+
 
     [HttpPost]
     public IActionResult SaveBook(Book book, int authorId)

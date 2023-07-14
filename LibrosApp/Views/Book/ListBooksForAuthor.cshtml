@@ -1,17 +1,13 @@
 ﻿@model IEnumerable<LibrosApp.Models.Book>
 
-@{
-    ViewData["Title"] = "Libros del Autor";
-}
-
-<h1>Libros del Autor: @ViewBag.AuthorName</h1>
+<h1>Lista de Libros para el Autor: @ViewBag.AuthorName</h1>
 
 @if (Model.Any())
 {
     <ul>
         @foreach (var book in Model)
         {
-            <li>@book.Title (@book.PublicationYear)</li>
+            <li>@book.Title - @book.PublicationYear</li>
         }
     </ul>
 }
@@ -19,4 +15,5 @@ else
 {
     <p>No hay libros disponibles para este autor.</p>
 }
-uUUU
+
+<a href="@Url.Action("Authors", "Home")" class="btn btn-primary">Seleccionar otro autor</a>
