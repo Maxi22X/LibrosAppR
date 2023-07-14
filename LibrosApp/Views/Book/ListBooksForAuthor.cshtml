@@ -1,0 +1,23 @@
+﻿@model IEnumerable<LibrosApp.Models.Book>
+
+<h1>Lista de Libros para el Autor: @ViewBag.AuthorName</h1>
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var book in Model)
+        {
+            <li>@book.Title</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No hay libros disponibles para este autor.</p>
+}
+
+<a href="@Url.Action("Authors", "Home")" class="btn btn-primary">Seleccionar otro autor</a>
+
+
+
+

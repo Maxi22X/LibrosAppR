@@ -1,0 +1,21 @@
+﻿@model List<LibrosApp.Models.Author>
+
+<h1>Lista de Autores</h1>
+
+@if (Model.Count == 0)
+{
+    <p>No hay autores disponibles.</p>
+}
+else
+{
+    <ul>
+        @foreach (var author in Model)
+        {
+            <li>
+                <a href="@Url.Action("ListBooksForAuthor", "Book", new { authorId = author.AuthorId })">
+                    @author.Name
+                </a>
+            </li>
+        }
+    </ul>
+}
