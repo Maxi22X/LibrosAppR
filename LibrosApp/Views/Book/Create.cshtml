@@ -1,25 +1,24 @@
-﻿@model LibrosApp.Models.Book
+﻿@model Book
 
-@{ 
-    ViewData["Title"] = "Crear Nuevo Libro";
+@using(Html.BeginForm("Save", "Book", FormMethod.Post))
+{
+    <div class="mb-3">
+        @Html.LabelFor(l => l.Title)
+        @Html.TextBoxFor(t => t.Title, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(l => l.PublicationYear )
+        @Html.TextBoxFor(t => t.PublicationYear , new { @class = "form-control" })
+    </div>
+
+
+    <div class="mb-3">
+        @Html.LabelFor(l => l.AuthorId)
+        @Html.DropDownListFor(d => d.AuthorId, new SelectList(ViewBag.Categories, "AuthorId", "Name"), "Seleccione un autor", new { @class = "form-select" })
+    </div>
+
+    @Html.ValidationSummary()
+
+    <button class="btn btn-primary" type="submit">Guardar</button>
 }
-
-<h1>Crear Nuevo Libro para el Autor: @ViewBag.AuthorName</h1>
-
-<form asp-action="SaveBook" method="post">
-    <input type="hidden" name="AuthorId" value="@ViewBag.AuthorId" />
-
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="PublicationYear"></label>
-        <input asp-for="PublicationYear" class="form-control" />
-        <span asp-validation-for="PublicationYear" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Crear Libro</button>
-</form>
