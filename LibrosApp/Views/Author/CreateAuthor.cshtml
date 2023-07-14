@@ -1,20 +1,23 @@
 ﻿@model LibrosApp.Models.Author
 
+@{
+    ViewData["Title"] = "Crear Nuevo Autor";
+}
+
 <h1>Crear Nuevo Autor</h1>
 
-@using (Html.BeginForm("CreateAuthor", "Author", FormMethod.Post))
-{
+<form asp-action="CreateAuthor" method="post">
     <div class="form-group">
-        @Html.LabelFor(model => model.Name)
-        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Name)
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Country)
-        @Html.TextBoxFor(model => model.Country, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Country)
+        <label asp-for="Country"></label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Guardar</button>
-}
+</form>
